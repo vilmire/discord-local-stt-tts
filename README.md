@@ -85,6 +85,12 @@ openclaw dvoice say "보이스 연결 테스트입니다."
 
 > The CLI name is `dvoice` even though the plugin ID is `discord-local-stt-tts`.
 
+## Origin / Attribution
+This plugin is based on the original OpenClaw Discord voice plugin repository:
+- https://github.com/clawdbot/discord-voice
+
+This fork focuses on **macOS local STT + local TTS** and packaging for public distribution.
+
 ## Troubleshooting
 - If audio is silent: ensure Discord voice permissions are correct and `ffmpeg` is installed.
 - If local STT fails: ensure `python3` is available and the faster-whisper dependencies/models are installed per plugin docs.
