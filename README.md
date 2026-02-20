@@ -86,7 +86,10 @@ openclaw dvoice say "Hello. This is a voice connection test."
 > The CLI name is `dvoice` even though the plugin ID is `discord-local-stt-tts`.
 
 ## Origin / Attribution
-This plugin is based on the original OpenClaw Discord voice plugin repository:
+This plugin is based on the original OpenClaw Discord voice plugin:
+- ClawHub: https://clawhub.ai/avatarneil/discord-voice
+
+Historical source reference (may not match the ClawHub canonical page):
 - https://github.com/clawdbot/discord-voice
 
 This fork focuses on **macOS local STT + local TTS** and packaging for public distribution.
