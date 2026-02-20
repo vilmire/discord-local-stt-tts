@@ -98,10 +98,11 @@ export interface DiscordVoiceConfig {
 
 export const DEFAULT_CONFIG: DiscordVoiceConfig = {
   enabled: true,
-  sttProvider: "whisper",
+  // Public distribution defaults: macOS local STT + local TTS
+  sttProvider: "local",
   streamingSTT: true,       // Enable streaming by default when using Deepgram
-  ttsProvider: "openai",
-  ttsVoice: "nova",
+  ttsProvider: "local",
+  ttsVoice: "Samantha",
   vadSensitivity: "medium",
   bargeIn: true,            // Enable barge-in by default
   allowedUsers: [],

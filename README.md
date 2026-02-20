@@ -15,13 +15,26 @@ This repo contains the **plugin code**.
 - **macOS only** (intended)
 
 ## Local mode (recommended)
-- **TTS**: macOS built-in `say`
-- **STT**: local faster-whisper (via the plugin `local` STT provider)
+This plugin uses macOS built-in APIs for low latency when configured for `local` providers:
+- **Local TTS**: macOS built-in `say`
+- **Local STT**: choose one
+  - **Apple Speech** (`apple-speech`): macOS **SFSpeechRecognizer** via `bin/apple_stt`
+  - **faster-whisper** (`faster-whisper`): Python subprocess + local models
 
 ## Requirements (macOS)
-- `ffmpeg` in PATH
-- `python3` in PATH (for local STT)
-- Optional: `pnpm` if you install from source and need to build
+### Runtime
+- `ffmpeg` in PATH (used for audio conversion/streaming to Discord)
+- macOS permissions:
+  - **Microphone** (Discord / OpenClaw)
+  - **Speech Recognition** (required if you use the `apple-speech` local STT engine)
+
+### Local STT engines
+Local STT can be configured via `config.local.stt.engine`:
+- `apple-speech` (default-friendly): uses macOS **SFSpeechRecognizer** via `bin/apple_stt` (no Python deps)
+- `faster-whisper`: uses a local Python runtime + faster-whisper models (higher setup cost)
+
+### Build (only if installing from source)
+- `pnpm`
 
 ## Install
 ### Option A (recommended): installer skill
@@ -96,4 +109,7 @@ This fork focuses on **macOS local STT + local TTS** and packaging for public di
 
 ## Troubleshooting
 - If audio is silent: ensure Discord voice permissions are correct and `ffmpeg` is installed.
-- If local STT fails: ensure `python3` is available and the faster-whisper dependencies/models are installed per plugin docs.
+- If local STT (apple-speech) fails:
+  - macOS **System Settings → Privacy & Security → Speech Recognition**: allow
+  - also check **Microphone** permission
+- If local STT (faster-whisper) fails: ensure `python3` is available and the faster-whisper dependencies/models are installed.
