@@ -61,7 +61,7 @@ Add to `~/.openclaw/openclaw.json`:
         "config": {
           "sttProvider": "local",
           "ttsProvider": "local",
-          "ttsVoice": "Yuna",
+          "ttsVoice": "Samantha",
           "autoJoinChannel": "<VOICE_CHANNEL_ID>"
         }
       }
@@ -80,7 +80,7 @@ This plugin registers the `dvoice` CLI namespace:
 ```bash
 openclaw dvoice status
 openclaw dvoice join <channelId>
-openclaw dvoice say "보이스 연결 테스트입니다."
+openclaw dvoice say "Hello. This is a voice connection test."
 ```
 
 > The CLI name is `dvoice` even though the plugin ID is `discord-local-stt-tts`.

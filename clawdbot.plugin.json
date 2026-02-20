@@ -27,7 +27,7 @@
       },
       "ttsVoice": {
         "type": "string",
-        "default": "Yuna"
+        "default": "Samantha"
       },
       "vadSensitivity": {
         "type": "string",

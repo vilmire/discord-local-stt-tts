@@ -218,7 +218,7 @@ export class VoiceConnectionManager {
     // IMPORTANT: only do this in the long-running gateway service (never in CLI helper processes).
     if (process.env.OPENCLAW_SERVICE_KIND === "gateway") {
       try {
-        await this.speak(session.guildId, "보이스 연결 테스트입니다.");
+        await this.speak(session.guildId, "Welcome. I'm ready.");
       } catch (e) {
         this.logger.warn(`[discord-local-stt-tts] Join self-test speak failed: ${e instanceof Error ? e.message : String(e)}`);
       }
