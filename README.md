@@ -1,22 +1,57 @@
-# discord-local-stt-tts (OpenClaw plugin)
+# discord-local-stt-tts (OpenClaw plugin, macOS)
 
-Discord voice assistant plugin for OpenClaw with **local STT + local TTS on macOS** (low latency).
+**Discord voice assistant plugin for OpenClaw** focused on **low-latency local STT + local TTS on macOS**.
 
-## What it does
-- Joins a Discord voice channel
-- Listens to users (STT)
-- Responds with the OpenClaw agent
-- Speaks back in the voice channel (TTS)
+This repo contains the **plugin code**.
+- If you want one-command install/update, use the companion ClawHub skill: `discord-local-stt-tts-installer`.
 
-## macOS Local Mode
+## What you get
+- Join a Discord voice channel
+- Capture user speech (STT)
+- Run the OpenClaw agent for replies
+- Play speech back in the voice channel (TTS)
+
+## Supported platforms
+- **macOS only** (intended)
+
+## Local mode (recommended)
 - **TTS**: macOS built-in `say`
-- **STT**: local faster-whisper (via plugin local provider)
+- **STT**: local faster-whisper (via the plugin `local` STT provider)
 
 ## Requirements (macOS)
-- `ffmpeg` available in PATH
-- Python runtime for faster-whisper script (if using local STT)
+- `ffmpeg` in PATH
+- `python3` in PATH (for local STT)
+- Optional: `pnpm` if you install from source and need to build
 
-## OpenClaw config example
+## Install
+### Option A (recommended): installer skill
+1) Install the ClawHub skill `discord-local-stt-tts-installer`
+2) Run:
+
+```bash
+bash bin/install.sh
+openclaw gateway restart
+```
+
+### Option B: install from source
+Clone this repo into:
+
+```text
+~/.openclaw/openclaw-extensions/plugins/discord-local-stt-tts
+```
+
+Then:
+
+```bash
+cd ~/.openclaw/openclaw-extensions/plugins/discord-local-stt-tts
+pnpm i
+pnpm build
+openclaw gateway restart
+```
+
+## Configuration
+Add to `~/.openclaw/openclaw.json`:
+
 ```jsonc
 {
   "plugins": {
@@ -35,12 +70,21 @@ Discord voice assistant plugin for OpenClaw with **local STT + local TTS on macO
 }
 ```
 
+### Notes
+- `autoJoinChannel` is a Discord **voice channel ID**.
+- If you don’t want auto-join, omit it and join manually.
+
 ## CLI
-This plugin registers a CLI namespace:
+This plugin registers the `dvoice` CLI namespace:
+
 ```bash
 openclaw dvoice status
 openclaw dvoice join <channelId>
 openclaw dvoice say "보이스 연결 테스트입니다."
 ```
 
-> Note: the CLI command name may remain `dvoice` even if the plugin ID changes; update later if needed.
+> The CLI name is `dvoice` even though the plugin ID is `discord-local-stt-tts`.
+
+## Troubleshooting
+- If audio is silent: ensure Discord voice permissions are correct and `ffmpeg` is installed.
+- If local STT fails: ensure `python3` is available and the faster-whisper dependencies/models are installed per plugin docs.
