@@ -1,0 +1,188 @@
+{
+  "id": "discord-local-stt-tts",
+  "name": "Discord Local STT/TTS (macOS)",
+  "description": "Discord voice assistant for OpenClaw with local STT + local TTS on macOS (low latency)",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "sttProvider": {
+        "type": "string",
+        "enum": [
+          "whisper",
+          "deepgram",
+          "http",
+          "local"
+        ],
+        "default": "local"
+      },
+      "streamingSTT": {
+        "type": "boolean",
+        "default": true
+      },
+      "ttsProvider": {
+        "type": "string",
+        "enum": [
+          "openai",
+          "elevenlabs",
+          "http",
+          "local"
+        ],
+        "default": "local"
+      },
+      "ttsVoice": {
+        "type": "string",
+        "default": "Yuna"
+      },
+      "vadSensitivity": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "medium"
+      },
+      "bargeIn": {
+        "type": "boolean",
+        "default": true
+      },
+      "allowedUsers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": []
+      },
+      "silenceThresholdMs": {
+        "type": "number",
+        "default": 1000
+      },
+      "minAudioMs": {
+        "type": "number",
+        "default": 300
+      },
+      "maxRecordingMs": {
+        "type": "number",
+        "default": 30000
+      },
+      "autoJoinChannel": {
+        "type": "string"
+      },
+      "heartbeatIntervalMs": {
+        "type": "number",
+        "default": 30000
+      },
+      "model": {
+        "type": "string"
+      },
+      "thinkLevel": {
+        "type": "string",
+        "enum": [
+          "off",
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "off"
+      },
+      "sessionMode": {
+        "type": "string",
+        "enum": [
+          "guild",
+          "user"
+        ],
+        "default": "guild",
+        "description": "Session sharing: guild=per voice channel, user=shared with user's text DMs"
+      },
+      "sessionKeyOverride": {
+        "type": "string",
+        "description": "(Advanced) Force all voice transcripts to use this OpenClaw sessionKey"
+      },
+      "openai": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "whisperModel": {
+            "type": "string",
+            "default": "whisper-1"
+          },
+          "ttsModel": {
+            "type": "string",
+            "default": "tts-1"
+          }
+        }
+      },
+      "elevenlabs": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "voiceId": {
+            "type": "string"
+          },
+          "modelId": {
+            "type": "string",
+            "default": "eleven_multilingual_v2"
+          }
+        }
+      },
+      "deepgram": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string",
+            "default": "nova-2"
+          }
+        }
+      },
+      "http": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "baseUrl": {
+            "type": "string"
+          },
+          "sttPath": {
+            "type": "string",
+            "default": "/stt"
+          },
+          "ttsPath": {
+            "type": "string",
+            "default": "/tts"
+          },
+          "ttsStreamPath": {
+            "type": "string",
+            "default": "/tts/stream"
+          },
+          "apiKey": {
+            "type": "string"
+          },
+          "timeoutMs": {
+            "type": "number",
+            "default": 30000
+          }
+        }
+      },
+      "local": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Local mode settings (mac): faster-whisper STT + say TTS"
+      }
+    }
+  }
+}
