@@ -3,7 +3,13 @@
 **Discord voice assistant plugin for OpenClaw** focused on **low-latency local STT + local TTS on macOS**.
 
 This repo contains the **plugin code**.
-- If you want one-command install/update, use the companion ClawHub skill: `discord-local-stt-tts-installer`.
+
+## Installer skill (recommended)
+For easiest install/update on macOS, use the companion **ClawHub skill**:
+- Slug: `discord-local-stt-tts-installer`
+- Install/update: installs into `~/.openclaw/openclaw-extensions/plugins/discord-local-stt-tts`
+
+(You can find it on ClawHub by searching the slug above.)
 
 ## What you get
 - Join a Discord voice channel
